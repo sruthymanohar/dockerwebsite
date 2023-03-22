@@ -1,0 +1,20 @@
+version: '3.3'
+name: website creation
+services:
+  frontend:
+    container_name: website
+    image: httpd:alpine
+    ports: 
+      - 80:80
+    volumes:
+      - type: bind
+        source: /home/ec2-user/project/website/
+        target: /usr/local/apache2/htdocs/
+    restart: always
+    networks:
+      - wpnet
+
+volumes:
+  sitedata:
+networks:
+  wpnet:
